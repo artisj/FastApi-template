@@ -30,7 +30,7 @@ async def create_user(data: schemas.User):
     return { 'detail': f'{user.email} has be registered'}
 
 # formdata has to be called username for input not email
-@user_router.post('/login', summary="Create access token for user",tags=['User Methods'], response_model=schemas.Token)
+@user_router.post('/login', summary="Create access token for user",tags=['User Methods'])
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     user = db.get_user_by('user','email', form_data.username)
     if user is None:
